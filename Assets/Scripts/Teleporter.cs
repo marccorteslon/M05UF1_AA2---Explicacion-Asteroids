@@ -4,35 +4,29 @@ using UnityEngine;
 
 public class Teleporter : MonoBehaviour
 {
-    public float vertical = 6;
-    public float horizontal = 10;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float vertical = 2f;  // Límit vertical
+    public float horizontal = 6f;  // Límit horitzontal
 
-    // Update is called once per frame
     void Update()
     {
+        // Teletransport vertical
         if (transform.position.y > vertical)
+        {
+            transform.position = new Vector3(transform.position.x, -vertical, transform.position.z);
+        }
+        else if (transform.position.y < -vertical)
         {
             transform.position = new Vector3(transform.position.x, vertical, transform.position.z);
         }
 
-        if (transform.position.y < -vertical)
-        {
-            transform.position = new Vector3(transform.position.x, -vertical, transform.position.z);
-        }
+        // Teletransport horitzontal
         if (transform.position.x > horizontal)
-        {
-            transform.position = new Vector3(horizontal, transform.position.y, transform.position.z);
-        }
-
-        if (transform.position.x < -horizontal)
         {
             transform.position = new Vector3(-horizontal, transform.position.y, transform.position.z);
         }
-
+        else if (transform.position.x < -horizontal)
+        {
+            transform.position = new Vector3(horizontal, transform.position.y, transform.position.z);
+        }
     }
 }
